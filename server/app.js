@@ -4,6 +4,7 @@ const connectDB = require("./config/db");
 
 const projectRouter = require("./routes/projectRoutes");
 const userRouter = require("./routes/userRoutes");
+const taskRouter = require("./routes/taskRoutes")
 
 dotenv.config();
 
@@ -26,5 +27,6 @@ app.listen(PORT, () => {
 
 app.use("/api/v1/projects", projectRouter);
 app.use("/api/v1/users", userRouter);
+app.use("api/v1/task", taskRouter.js)
 
 module.exports = app;

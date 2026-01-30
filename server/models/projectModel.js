@@ -1,31 +1,23 @@
-const mongoose = require("mongoose");
+// models/projectModel.js
+const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "A project must have a name"],
-    unique: true,
-    trim: true,
-    maxlength: [40, "A project must be less than or equal to 40 characters"],
-    minlength: [10, "A project must be more than or equal to 10 characters"],
+    required: true,
+    trim: true
   },
   description: {
     type: String,
-    required: [true, "A project must have a description"],
-    minlength: [
-      20,
-      "A project description must be more than or equal to 10 characters",
-    ],
+    trim: true
   },
-  owner: {
+  createdBy: {
     type: mongoose.Schema.Types.ObjectId,
-    // required: true,
-  },
-  members: {
-    type: mongoose.Schema.Types.ObjectId,
-  },
+    ref: 'User',
+    required: true
+  }
+}, {
+  timestamps: true
 });
 
-const Project = mongoose.model("Project", projectSchema);
-
-module.exports = Project;
+module.exports = mongoose.model('Project', projectSchema);

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const taskController = require("../controllers/taskController");
+const authController = require("../controllers/authController");
+
+router.use(authController.protect);
 
 router.post("/tasks", taskController.createTask);
 router.get("/tasks", taskController.getAllTasks);
