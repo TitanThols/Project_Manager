@@ -1,30 +1,30 @@
-// routes/projectRoutes.js
 const express = require('express');
 const router = express.Router();
 const projectController = require('./../controllers/projectController');
 const authController = require('./../controllers/authController');
 const { isMember, isOwner, isOwnerOrAdmin } = require('./../middleware/projectAuth');
+const { validate, projectSchemas } = require('./../middleware/validation'); // ADD THIS
 
 // All routes require authentication
 router.use(authController.protect);
 
-// Project routes
+// Project routes with validation
 router
   .route('/')
   .get(projectController.getAllProjects)
-  .post(projectController.createProject);
+  .post(validate(projectSchemas.create), projectController.createProject);
 
 router
   .route('/:id')
-  .get(isMember, projectController.getProjectById)
-  .patch(isOwnerOrAdmin, projectController.updateProject)
+  .get(isMember, projectController.getProject)
+  .patch(isOwnerOrAdmin, validate(projectSchemas.update), projectController.updateProject)
   .delete(isOwner, projectController.deleteProject);
 
-// Member management routes
+// Member management routes with validation
 router
   .route('/:id/members')
   .get(isMember, projectController.getProjectMembers)
-  .post(isOwnerOrAdmin, projectController.addMember);
+  .post(isOwnerOrAdmin, validate(projectSchemas.addMember), projectController.addMember);
 
 router
   .route('/:id/members/:userId')

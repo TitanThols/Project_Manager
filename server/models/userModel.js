@@ -39,15 +39,21 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false,
   },
+}, {
+  timestamps: true
 });
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
-
+// FIXED: Removed next parameter and calls
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 12);
-
   this.passwordConfirm = undefined;
-  next();
+});
+
+// Update passwordChangedAt when password is modified
+userSchema.pre("save", function () {
+  if (!this.isModified("password") || this.isNew) return;
+  this.passwordChangedAt = Date.now() - 1000;
 });
 
 userSchema.methods.correctPassword = async function (
@@ -63,26 +69,20 @@ userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
       this.passwordChangedAt.getTime() / 1000,
       10,
     );
-
     return JWTTimestamp < changedTimestamp;
   }
-
-  // False means NOT changed
   return false;
 };
 
 userSchema.methods.createPasswordResetToken = function () {
   const resetToken = crypto.randomBytes(32).toString("hex");
-
   this.passwordResetToken = crypto
     .createHash("sha256")
     .update(resetToken)
     .digest("hex");
-
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
-
   return resetToken;
 };
-const User = mongoose.model("user", userSchema);
 
+const User = mongoose.model("User", userSchema);
 module.exports = User;
