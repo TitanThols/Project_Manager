@@ -1,0 +1,174 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px;
+  gap: 20px;
+}
+
+.heroIcon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #0581c4, #7c3aed);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.2;
+}
+
+.heroTitle span {
+  color: var(--accent);
+}
+
+.heroSub {
+  color: #aaa;
+  max-width: 460px;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.primary {
+  background: linear-gradient(135deg, #0581c4, #7c3aed);
+  border: none;
+  color: #fff;
+  padding: 11px 28px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 11px 28px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+}
+
+.secondary:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.heroNote {
+  color: #555;
+  font-size: 0.78rem;
+}
+
+.features {
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.sectionSub {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 48px;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+  transition: border-color 0.2s;
+}
+
+.featureCard:hover {
+  border-color: var(--accent);
+}
+
+.featureIcon {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.featureTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.featureDesc {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+.cta {
+  padding: 80px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.ctaTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.ctaSub {
+  color: #888;
+  max-width: 420px;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer {
+  text-align: center;
+  padding: 24px;
+  border-top: 1px solid var(--border);
+  color: #555;
+  font-size: 0.8rem;
+}

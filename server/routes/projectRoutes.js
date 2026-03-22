@@ -16,7 +16,7 @@ router
 
 router
   .route('/:id')
-  .get(isMember, projectController.getProject)
+  .get(isMember, projectController.getProjectById)
   .patch(isOwnerOrAdmin, validate(projectSchemas.update), projectController.updateProject)
   .delete(isOwner, projectController.deleteProject);
 

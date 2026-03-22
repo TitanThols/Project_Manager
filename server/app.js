@@ -14,14 +14,15 @@ dotenv.config();
 
 const app = express();
 
-app.use(helmet());
-
-app.use(mongoSanitize());
-
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: 'http://localhost:5173', // your frontend
   credentials: true
 }));
+
+app.use(helmet());
+
+// app.use(mongoSanitize());
+
 
 app.use(express.json({ limit: '10kb' }));
 
