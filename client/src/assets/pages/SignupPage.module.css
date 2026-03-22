@@ -122,3 +122,17 @@
   font-size: 0.78rem;
   color: #555;
 }
+
+.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.logoText span {
+  color: #0581c4;
+}

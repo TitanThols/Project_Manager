@@ -6,9 +6,7 @@ import { FolderKanban, Users, Clock, BarChart2, Shield, Zap } from 'lucide-react
 const features = [
   { icon: <FolderKanban size={24} />, title: 'Project Organization', desc: 'Create and organize multiple projects with ease. Keep your work structured and accessible.' },
   { icon: <Users size={24} />, title: 'Team Collaboration', desc: 'Assign tasks to team members and collaborate seamlessly across your organization.' },
-  { icon: <Clock size={24} />, title: 'Time Tracking', desc: 'Track time spent on tasks and monitor deadlines to ensure projects stay on schedule.' },
   { icon: <BarChart2 size={24} />, title: 'Progress Analytics', desc: 'Visualize project progress and team performance with detailed analytics and reports.' },
-  { icon: <Shield size={24} />, title: 'Secure & Private', desc: 'Your data is protected with enterprise-grade security and privacy measures.' },
   { icon: <Zap size={24} />, title: 'Lightning Fast', desc: 'Built for speed and efficiency. Access your projects and tasks instantly, anywhere.' },
 ]
 
@@ -24,9 +22,7 @@ export default function LandingPage() {
 
       {/* Hero */}
       <section className={styles.hero}>
-        <div className={styles.heroIcon}>
-          <FolderKanban size={32} color="#fff" />
-        </div>
+        
         <h1 className={styles.heroTitle}>
           Manage Projects with <span>Ease</span>
         </h1>
@@ -42,7 +38,6 @@ export default function LandingPage() {
             Sign In
           </button>
         </div>
-        <p className={styles.heroNote}>No credit card required • Free 14-day trial</p>
       </section>
 
       {/* Features */}
@@ -63,9 +58,6 @@ export default function LandingPage() {
       {/* CTA */}
       <section className={styles.cta}>
         <h2 className={styles.ctaTitle}>Ready to get started?</h2>
-        <p className={styles.ctaSub}>
-          Join thousands of teams already using ProMap to manage their projects more efficiently.
-        </p>
         <div className={styles.heroButtons}>
           <button className={styles.primary} onClick={() => navigate('/signup')}>
             Create Free Account

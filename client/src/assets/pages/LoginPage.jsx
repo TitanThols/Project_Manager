@@ -31,10 +31,8 @@ export default function LoginPage() {
   return (
     <div className={styles.page}>
       <div className={styles.logo}>
-        <div className={styles.logoIcon}>
-          <FolderKanban size={28} color="#fff" />
-        </div>
-        <h1 className={styles.logoText}>ProMap</h1>
+        
+        <h1 className={styles.logoText}>Pro<span>Map</span></h1>
         <p className={styles.logoSub}>Project Management Made Simple</p>
       </div>
 

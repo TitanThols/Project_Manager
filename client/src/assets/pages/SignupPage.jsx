@@ -39,10 +39,7 @@ export default function SignupPage() {
   return (
     <div className={styles.page}>
       <div className={styles.logo}>
-        <div className={styles.logoIcon}>
-          <FolderKanban size={28} color="#fff" />
-        </div>
-        <h1 className={styles.logoText}>ProMap</h1>
+        <h1 className={styles.logoText}>Pro<span>Map</span></h1>
         <p className={styles.logoSub}>Start managing your projects today</p>
       </div>
 
@@ -58,7 +55,7 @@ export default function SignupPage() {
             <input
               className={styles.input}
               type="text"
-              placeholder="John Doe"
+              placeholder="Kokki Kumar"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
