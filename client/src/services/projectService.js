@@ -19,3 +19,13 @@ export const addMember = async (projectId, userId, role = 'member') => {
   const res = await api.post(`/projects/${projectId}/members`, { userId, role })
   return res.data
 }
+
+export const getProjectMembers = async (projectId) => {
+  const res = await api.get(`/projects/${projectId}/members`)
+  return res.data
+}
+
+export const removeMember = async (projectId, userId) => {
+  const res = await api.delete(`/projects/${projectId}/members/${userId}`)
+  return res.data
+}

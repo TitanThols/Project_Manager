@@ -148,3 +148,14 @@
 .logoText span {
   color: #0581c4;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px;
+    justify-content: flex-start;
+    padding-top: 40px;
+  }
+  .card {
+    padding: 24px 20px;
+  }
+}

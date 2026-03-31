@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import LandingPage from './assets/pages/LandingPage'
-import LoginPage from './assets/pages/LoginPage'
-import SignupPage from './assets/pages/SignupPage'
-import Dashboard from './assets/pages/Dashboard'
-import { useAuth } from './assets/context/AuthContext'
+import LandingPage from './pages/LandingPage'
+import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage'
+import Dashboard from './pages/Dashboard'
+import { useAuth } from './context/AuthContext'
 
 function ProtectedRoute({ children }) {
   const { token } = useAuth()

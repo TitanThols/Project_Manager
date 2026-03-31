@@ -22,7 +22,13 @@ export default function LoginPage() {
       loginUser(data)
       navigate('/dashboard')
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed')
+        console.log('error:', err.response?.data)
+        const data = err.response?.data
+        if (data?.errors && data.errors.length > 0) {
+          setError(data.errors[0])
+        } else {
+            setError(data?.message || 'Signup failed')
+        }
     } finally {
       setLoading(false)
     }

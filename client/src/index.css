@@ -19,3 +19,7 @@ body {
   color: var(--muted);
   font-family: 'Arvo', serif;
 }
+
+html, body {
+  overflow-x: hidden;
+}
