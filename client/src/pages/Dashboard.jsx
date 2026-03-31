@@ -276,11 +276,9 @@ export default function Dashboard() {
                 <h2 className={styles.sectionTitle}>Tasks</h2>
                 <p className={styles.sectionSub}>Manage and track all your tasks</p>
               </div>
-              <div className={styles.btnWrapper}>
                 <button className={styles.newBtn} onClick={() => setShowTaskModal(true)}>
                   <Plus size={16} /> New Task
                 </button>
-              </div>
             </div>
             <div className={styles.filters}>
               <div className={styles.searchWrapper}>
