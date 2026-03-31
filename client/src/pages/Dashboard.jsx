@@ -391,11 +391,9 @@ export default function Dashboard() {
                 <h2 className={styles.sectionTitle}>Projects</h2>
                 <p className={styles.sectionSub}>Manage all your projects</p>
               </div>
-              <div className={styles.btnWrapper}>
-                <button className={styles.newBtn} onClick={() => setShowProjectModal(true)}>
-                  <Plus size={16} /> New Project
-                </button>
-              </div>
+              <button className={styles.newBtn} onClick={() => setShowProjectModal(true)}>
+                <Plus size={16} /> New Project
+              </button>
             </div>
             <div className={styles.taskList}>
               {projects.length === 0 ? (

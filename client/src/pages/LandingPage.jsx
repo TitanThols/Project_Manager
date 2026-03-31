@@ -20,7 +20,6 @@ export default function LandingPage() {
         onGetStarted={() => navigate('/signup')}
       />
 
-      {/* Hero */}
       <section className={styles.hero}>
         
         <h1 className={styles.heroTitle}>
@@ -40,7 +39,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features */}
       <section className={styles.features}>
         <h2 className={styles.sectionTitle}>Everything you need to succeed</h2>
         <p className={styles.sectionSub}>Powerful features to help your team stay organized and productive</p>
@@ -55,7 +53,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className={styles.cta}>
         <h2 className={styles.ctaTitle}>Ready to get started?</h2>
         <div className={styles.heroButtons}>
@@ -68,7 +65,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className={styles.footer}>
         <span>© 2026 ProMap. All rights reserved.</span>
       </footer>
