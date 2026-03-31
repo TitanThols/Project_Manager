@@ -164,6 +164,7 @@ export default function Dashboard() {
       await deleteProject(projectId)
       fetchData()
     } catch (err) {
+      console.log(err)
       setError('Failed to delete project')
     }
   }
