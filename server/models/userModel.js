@@ -43,14 +43,12 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// FIXED: Removed next parameter and calls
 userSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   this.password = await bcrypt.hash(this.password, 12);
   this.passwordConfirm = undefined;
 });
 
-// Update passwordChangedAt when password is modified
 userSchema.pre("save", function () {
   if (!this.isModified("password") || this.isNew) return;
   this.passwordChangedAt = Date.now() - 1000;

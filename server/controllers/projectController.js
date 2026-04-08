@@ -86,10 +86,8 @@ exports.deleteProject = catchAsync(async (req, res, next) => {
     return next(new AppError('No project found with that ID', 404));
   }
   
-  // Delete all project memberships
   await ProjectMember.deleteMany({ projectId: req.params.id });
   
-  // Delete all tasks in project
   await Task.deleteMany({ projectId: req.params.id });
   
   res.status(204).json({
@@ -98,7 +96,6 @@ exports.deleteProject = catchAsync(async (req, res, next) => {
   });
 });
 
-// ADD MEMBER TO PROJECT
 exports.addMember = catchAsync(async (req, res, next) => {
   const { userId, role } = req.body;
   
@@ -123,7 +120,6 @@ exports.addMember = catchAsync(async (req, res, next) => {
   });
 });
 
-// REMOVE MEMBER FROM PROJECT
 exports.removeMember = catchAsync(async (req, res, next) => {
   const member = await ProjectMember.findOneAndDelete({
     projectId: req.params.id,
@@ -140,7 +136,6 @@ exports.removeMember = catchAsync(async (req, res, next) => {
   });
 });
 
-// GET PROJECT MEMBERS
 exports.getProjectMembers = catchAsync(async (req, res, next) => {
   const members = await ProjectMember.find({ projectId: req.params.id })
     .populate('userId', 'name email');

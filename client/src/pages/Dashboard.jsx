@@ -115,6 +115,7 @@ export default function Dashboard() {
   async function handleCreateTask(e) {
     e.preventDefault()
     try {
+      setError('')
       await createTask({
         title: taskName,
         projectId: taskProject,
@@ -131,73 +132,85 @@ export default function Dashboard() {
       setProjectMembers([])
       fetchData()
     } catch (err) {
-      console.log(err)
-      setError('Failed to create task')
+      const errorMessage = err.response?.data?.message || 'Failed to create task'
+      setError(errorMessage)
     }
   }
 
   async function handleCreateProject(e) {
     e.preventDefault()
     try {
+      setError('')
       await createProject({ name: projectName, description: projectDescription })
       setShowProjectModal(false)
       setProjectName('')
       setProjectDescription('')
       fetchData()
     } catch (err) {
-      setError('Failed to create project')
+      const errorMessage = err.response?.data?.message || 'Failed to create project'
+      setError(errorMessage)
     }
   }
 
   async function handleDeleteTask(taskId) {
     if (!window.confirm('Delete this task?')) return
     try {
+      setError('')
       await deleteTask(taskId)
       fetchData()
     } catch (err) {
-      setError('Failed to delete task')
+      const errorMessage = err.response?.data?.message || 'Failed to delete task'
+      setError(errorMessage)
     }
   }
 
   async function handleDeleteProject(projectId) {
     if (!window.confirm('Delete this project? All tasks will be deleted too.')) return
     try {
+      setError('')
       await deleteProject(projectId)
       fetchData()
     } catch (err) {
-      setError('Failed to delete project')
+      const errorMessage = err.response?.data?.message || 'Failed to delete project'
+      setError(errorMessage)
     }
   }
 
   async function handleStatusChange(taskId, status) {
     try {
+      setError('')
       await updateTask(taskId, { status })
       fetchData()
     } catch (err) {
-      setError('Failed to update task')
+      const errorMessage = err.response?.data?.message || 'Failed to update task'
+      setError(errorMessage)
     }
   }
 
   async function handleAddMember(userId) {
     try {
+      setError('')
       await addMember(selectedProject._id, userId, selectedRole)
       const res = await getProjectMembers(selectedProject._id)
       setSelectedProjectMembers(res.data.members || [])
       setMemberSearch('')
       setMemberSearchResults([])
     } catch (err) {
-      setError('Failed to add member')
+      const errorMessage = err.response?.data?.message || 'Failed to add member'
+      setError(errorMessage)
     }
   }
 
   async function handleRemoveMember(userId) {
     if (!window.confirm('Remove this member?')) return
     try {
+      setError('')
       await removeMember(selectedProject._id, userId)
       const res = await getProjectMembers(selectedProject._id)
       setSelectedProjectMembers(res.data.members || [])
     } catch (err) {
-      setError('Failed to remove member')
+      const errorMessage = err.response?.data?.message || 'Failed to remove member'
+      setError(errorMessage)
     }
   }
 
@@ -232,7 +245,7 @@ export default function Dashboard() {
         <div className={styles.statsGrid}>
           <div className={styles.statCard}>
             <div>
-              <p className={styles.statLabel}>Total Projects</p>
+                <p className={styles.statLabel}>Total Projects</p>
               <h2 className={styles.statNumber}>{projects.length}</h2>
             </div>
             <div className={styles.statIcon}><FolderKanban size={28} /></div>

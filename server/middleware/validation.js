@@ -1,7 +1,5 @@
-// middleware/validation.js
 const Joi = require('joi');
 
-// Validation middleware factory
 const validate = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body, { abortEarly: false });
@@ -16,7 +14,7 @@ const validate = (schema) => {
   };
 };
 
-// User validation schemas
+
 const userSchemas = {
   signup: Joi.object({
     name: Joi.string().min(2).max(50).required().messages({
@@ -61,7 +59,6 @@ const userSchemas = {
   })
 };
 
-// Project validation schemas
 const projectSchemas = {
   create: Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
@@ -94,7 +91,6 @@ const projectSchemas = {
   })
 };
 
-// Task validation schemas
 const taskSchemas = {
   create: Joi.object({
     title: Joi.string().min(3).max(200).required().messages({

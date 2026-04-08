@@ -21,9 +21,6 @@ app.use(cors({
 
 app.use(helmet());
 
-// app.use(mongoSanitize());
-
-
 app.use(express.json({ limit: '10kb' }));
 
 const limiter = rateLimit({
@@ -60,7 +57,7 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`); // Fixed: backticks
+  console.log(`Server running on port ${PORT}`);
 });
 
 module.exports = app;

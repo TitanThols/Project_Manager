@@ -7,7 +7,7 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token') || null)
 
   function loginUser(data) {
-  setUser(data.data.user)        // ← was data.user
+  setUser(data.data.user)        
   setToken(data.token)
   localStorage.setItem('token', data.token)
   }

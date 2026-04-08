@@ -20,7 +20,6 @@ const projectMemberSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Ensure a user can't be added to the same project twice
 projectMemberSchema.index({ projectId: 1, userId: 1 }, { unique: true });
 
 module.exports = mongoose.model('ProjectMember', projectMemberSchema);

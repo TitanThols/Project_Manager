@@ -1,9 +1,7 @@
-// controllers/taskController.js
 const Task = require('../models/taskModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
-// CREATE TASK
 exports.createTask = catchAsync(async (req, res, next) => {
   if (!req.body.projectId) {
     return next(new AppError('Please provide projectId', 400));
@@ -28,7 +26,6 @@ exports.createTask = catchAsync(async (req, res, next) => {
   });
 });
 
-// GET ALL TASKS (with search, filter, sort, pagination)
 exports.getAllTasks = catchAsync(async (req, res, next) => {
   const { projectId, status, priority, assignedTo, search, sort, page = 1, limit = 10 } = req.query;
   
@@ -36,7 +33,6 @@ exports.getAllTasks = catchAsync(async (req, res, next) => {
     return next(new AppError('Please provide projectId query parameter', 400));
   }
   
-  // Build filter query
   const filter = { projectId };
   if (status) filter.status = status;
   if (priority) filter.priority = priority;
@@ -48,17 +44,15 @@ exports.getAllTasks = catchAsync(async (req, res, next) => {
     ];
   }
   
-  // Sort options
   let sortOption = {};
   if (sort) {
     const sortField = sort.startsWith('-') ? sort.substring(1) : sort;
     const sortOrder = sort.startsWith('-') ? -1 : 1;
     sortOption[sortField] = sortOrder;
   } else {
-    sortOption = { createdAt: -1 }; // Default: newest first
+    sortOption = { createdAt: -1 };
   }
   
-  // Pagination
   const skip = (page - 1) * limit;
   
   const tasks = await Task.find(filter)
@@ -86,7 +80,6 @@ exports.getAllTasks = catchAsync(async (req, res, next) => {
   });
 });
 
-// GET TASK BY ID
 exports.getTaskById = catchAsync(async (req, res, next) => {
   const task = await Task.findById(req.params.id)
     .populate('assignedTo', 'name email')
@@ -105,9 +98,7 @@ exports.getTaskById = catchAsync(async (req, res, next) => {
   });
 });
 
-// UPDATE TASK
 exports.updateTask = catchAsync(async (req, res, next) => {
-  // Don't allow updating projectId or createdBy
   if (req.body.projectId || req.body.createdBy) {
     return next(new AppError('You cannot update projectId or createdBy', 400));
   }
@@ -136,7 +127,6 @@ exports.updateTask = catchAsync(async (req, res, next) => {
   });
 });
 
-// DELETE TASK
 exports.deleteTask = catchAsync(async (req, res, next) => {
   const task = await Task.findByIdAndDelete(req.params.id);
   

@@ -63,3 +63,20 @@ exports.isOwnerOrAdmin = catchAsync(async (req, res, next) => {
   req.projectMember = member;
   next();
 });
+
+exports.isTaskCreator = catchAsync(async (req, res, next) => {
+  const Task = require('../models/taskModel');
+  
+  const task = await Task.findById(req.params.id);
+  
+  if (!task) {
+    return next(new AppError('No task found with that ID', 404));
+  }
+  
+  if (task.createdBy.toString() !== req.user._id.toString()) {
+    return next(new AppError('You are not the owner of this task. Only the creator can delete it.', 403));
+  }
+  
+  req.task = task;
+  next();
+});

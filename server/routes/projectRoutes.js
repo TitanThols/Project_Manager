@@ -3,12 +3,11 @@ const router = express.Router();
 const projectController = require('./../controllers/projectController');
 const authController = require('./../controllers/authController');
 const { isMember, isOwner, isOwnerOrAdmin } = require('./../middleware/projectAuth');
-const { validate, projectSchemas } = require('./../middleware/validation'); // ADD THIS
+const { validate, projectSchemas } = require('./../middleware/validation');
 
 // All routes require authentication
 router.use(authController.protect);
 
-// Project routes with validation
 router
   .route('/')
   .get(projectController.getAllProjects)
@@ -20,7 +19,6 @@ router
   .patch(isOwnerOrAdmin, validate(projectSchemas.update), projectController.updateProject)
   .delete(isOwner, projectController.deleteProject);
 
-// Member management routes with validation
 router
   .route('/:id/members')
   .get(isMember, projectController.getProjectMembers)
