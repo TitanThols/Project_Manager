@@ -64,7 +64,6 @@ export default function LoginPage() {
           <div className={styles.field}>
             <div className={styles.passwordRow}>
               <label className={styles.label}>Password</label>
-              <span className={styles.forgot}>Forgot password?</span>
             </div>
             <input
               className={styles.input}
